@@ -1,20 +1,17 @@
 from django.db import models
 
 
+class Manufacturer(models.Model):
+    name = models.CharField(max_length=100)
+    country = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
 class Car(models.Model):
 
-    class ManufacturerChoices(models.TextChoices):
-        TOYOTA = 'Toyota'
-        HONDA = 'Honda'
-        FORD = 'Ford'
-        BMW = 'BMW'
-        OTHER = 'Other'
-    
-    manufacturer = models.CharField(
-        max_length=20,
-        choices=ManufacturerChoices.choices,
-        default=ManufacturerChoices.OTHER,
-    )
+    manufacturer_related = models.ForeignKey(Manufacturer, related_name="cars", default=None, null=True, on_delete=models.CASCADE)
     model_name = models.CharField(max_length=100)
     year = models.PositiveIntegerField()
     color = models.CharField(max_length=20)
@@ -28,4 +25,4 @@ class Car(models.Model):
     is_electric = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.year} {self.manufacturer} {self.model_name}"
+        return f"{self.manufacturer_related.name} {self.model_name}"
