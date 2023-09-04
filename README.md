@@ -20,4 +20,4 @@ Prerequisites: Python3, pipenv
 
 ## Video Demo
 Part 1: https://youtu.be/FfHZleTLJUI <br />
-Part 2: Coming soon.... <br />
+Part 2: https://youtu.be/kFhaGN7Uydc <br />
